@@ -1,43 +1,48 @@
 from colorama import Fore
 
+def input_error(func):
+    
+    def inner(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except ValueError:
+            return Fore.RED + "Give me name and phone please."
+        except IndexError:
+            return Fore.RED + "Missing argument name. Please try again."
+        except KeyError as e:
+            return Fore.RED + e.args[0]
+        
+    return inner
+
+@input_error
 def add_contact(args, contacts):
-    try:
-        name, phone = args
-    except ValueError:
-        return Fore.RED + "Missing one or two arguments. Please try again"
+    name, phone = args
     if name in contacts:
         return Fore.YELLOW + f"User {name} is already in your phonebook. If you want to change phone use 'change' operation"
     contacts[name] = phone
     return Fore.GREEN + 'Contact added.'
-    
 
-
+@input_error
 def change_contact(args, contacts):
-    try:
-        name, phone = args
-    except ValueError:
-        return Fore.RED + "Missing one or two arguments. Please try again"
+    name, phone = args
     if not contacts:
         return Fore.YELLOW + "Phonebook is empty."
     if name in contacts:
         contacts[name] = phone
         return Fore.GREEN + 'Contact changed.'
     else:
-        return Fore.RED + 'Contact not found.'
+        raise KeyError('Contact not found.')
 
-
+@input_error
 def find_phone(args, contacts):
-    try:
-        name = args[0]
-    except IndexError:
-        return Fore.RED + "Missing argument name. Please try again"
+    name = args[0]
     if not contacts:
         return Fore.YELLOW + "Phonebook is empty."
     if name in contacts:
         phone = contacts[name]
         return Fore.LIGHTMAGENTA_EX + phone
     else:
-        return Fore.RED + "Wrong username"
+        raise KeyError("Wrong username")
 
 
 def show_all(contacts):
