@@ -1,14 +1,5 @@
 TASK 1
 
-This program allows you to always be aware of the birthdays of relatives, friends and acquaintances.
-The main feature of this program is that:
-
-- regardless of the day of the week, you will always know who you need to congratulate during the next week;
-- if the birthday falls on a weekend, the program automatically transfers the greeting note to Monday (if it is within 7 days from today);
-- the program is sensitive to the last days of the month, leap and non-leap years
-
-TASK 2
-
 This bot assistant is a great solution for storing, editing and quickly finding phone numbers of relatives, friends and acquaintances.
 
 Main functionality:
@@ -31,3 +22,17 @@ Example: close
 Example: exit
 
 If the entered data does not correspond to the existing data, or is incomplete at all, then a corresponding message with the specified problem will be displayed.
+
+Task 2:
+
+The easy-to-use and intuitive interface allows you to use the Address Book to store and edit information about acquaintances, friends and relatives.
+Main functionality:
+
+- creating a contact
+- adding additional phone numbers to the created contact
+- search for a phone number in the list of numbers of a specific contact
+  -editing numbers
+  deleting numbers
+- search for a contact by name
+  -deleting a contact by name
+  Partial work with errors has been done
