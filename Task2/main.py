@@ -34,14 +34,14 @@ class Record:
             print(error)
     
     def find_phone(self, phone):
-        if phone in (p.value for p in self.phones):
+        if phone in list(map(str, self.phones)):
             return phone
         else:
             return None
         
     def remove_phone(self, phone):
         if self.find_phone(phone):
-            index = (p.value for p in self.phones).index(phone)
+            index = list(map(str, self.phones)).index(phone)
             del self.phones[index]
             return index
         else:
@@ -87,6 +87,7 @@ book = AddressBook()
 # Створення запису для John
 john_record = Record("John")
 john_record.add_phone("1234567903")
+john_record.add_phone("1234567890")
 john_record.add_phone("5555555555")
 john_record.add_phone("555555555")
 
