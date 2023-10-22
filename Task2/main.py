@@ -18,7 +18,7 @@ class Phone(Field):
     def __init__(self, phone):
         if phone and len(phone) == 10:
             super().__init__(phone)
-        else:
+        else: 
             raise ValueError("Invalid phone number. Length of phone must be 10 numbers.")
            
             
@@ -53,7 +53,7 @@ class Record:
             if index:
                 self.phones.insert(index, Phone(new_phone))
         else:
-            print(f"Phone number {old_phone} is not in the {self.name} record")
+            return f"Phone number {old_phone} is not in the {self.name} record"
         
     def __str__(self):
         if self.phones:
