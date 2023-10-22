@@ -16,7 +16,10 @@ class Name(Field):
         
 class Phone(Field):
     def __init__(self, phone):
-        super().__init__(phone)
+        if phone and len(phone) == 10:
+            super().__init__(phone)
+        else: 
+            raise ValueError("Invalid phone number. Length of phone must be 10 numbers.")
            
             
 class Record:
@@ -25,10 +28,10 @@ class Record:
         self.phones = []
         
     def add_phone(self, phone):
-        if phone and len(phone) == 10:
+        try:
             self.phones.append(Phone(phone))
-        else:
-            print("Invalid phone number. Length of phone must be 10 numbers.")
+        except ValueError as error:
+            print(error)
     
     def find_phone(self, phone):
         if phone in (p.value for p in self.phones):
